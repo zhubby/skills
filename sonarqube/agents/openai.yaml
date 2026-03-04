@@ -1,0 +1,3 @@
+interface:
+  display_name: "SonarQube Quality Analyzer"
+  short_description: "Scan code and summarize SonarQube findings"

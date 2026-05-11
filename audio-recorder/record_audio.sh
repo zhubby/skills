@@ -7,7 +7,7 @@ set -e
 # Default parameters
 DURATION=${1:-30}
 OUTPUT=${2:-audio_$(date +%Y%m%d_%H%M%S).mp3}
-WORKSPACE="${KLAW_WORKSPACE:-/Users/zhubby/.klaw/workspace}"
+WORKSPACE="${KLAW_WORKSPACE:-$HOME/.klaw/workspace}"
 
 echo "🎤 Audio recording started"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

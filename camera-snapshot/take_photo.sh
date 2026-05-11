@@ -6,7 +6,7 @@ set -e
 
 # Default parameters
 OUTPUT=${1:-photo_$(date +%Y%m%d_%H%M%S).jpg}
-WORKSPACE="${KLAW_WORKSPACE:-/Users/zhubby/.klaw/workspace}"
+WORKSPACE="${KLAW_WORKSPACE:-$HOME/.klaw/workspace}"
 
 echo "📸 Photo capture started"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

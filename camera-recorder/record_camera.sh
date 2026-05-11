@@ -7,7 +7,7 @@ set -e
 # Default parameters
 DURATION=${1:-30}
 OUTPUT=${2:-video_$(date +%Y%m%d_%H%M%S).mp4}
-WORKSPACE="${KLAW_WORKSPACE:-/Users/zhubby/.klaw/workspace}"
+WORKSPACE="${KLAW_WORKSPACE:-$HOME/.klaw/workspace}"
 
 echo "📹 Camera recording started"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

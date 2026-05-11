@@ -1,37 +1,37 @@
 #!/bin/bash
-# 🦀 陛下御用摄像头录制脚本
-# 用法：./record_camera.sh [录制时长 (秒)] [输出文件名]
+# Camera recording script using ffmpeg
+# Usage: ./record_camera.sh [duration_seconds] [output_filename]
 
 set -e
 
-# 默认参数
-DURATION=${1:-30}                    # 默认录制 30 秒
-OUTPUT=${2:-boss_video_$(date +%Y%m%d_%H%M%S).mp4}
-WORKSPACE="/Users/zhubby/.klaw/workspace"
+# Default parameters
+DURATION=${1:-30}
+OUTPUT=${2:-video_$(date +%Y%m%d_%H%M%S).mp4}
+WORKSPACE="${KLAW_WORKSPACE:-/Users/zhubby/.klaw/workspace}"
 
-echo "🦀 陛下，摄像头录制脚本已启动！"
+echo "📹 Camera recording started"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "📹 录制时长：${DURATION} 秒"
-echo "💾 输出文件：${WORKSPACE}/${OUTPUT}"
+echo "Duration: ${DURATION} seconds"
+echo "Output: ${WORKSPACE}/${OUTPUT}"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-# 检查 ffmpeg 是否安装
+# Check if ffmpeg is installed
 if ! command -v ffmpeg &> /dev/null; then
-    echo "❌ ffmpeg 未安装，正在安装..."
+    echo "❌ ffmpeg not found, installing..."
     brew install ffmpeg
 fi
 
-# 列出可用的摄像头设备
+# List available camera devices
 echo ""
-echo "🔍 检测摄像头设备..."
+echo "🔍 Detecting camera devices..."
 ffmpeg -f avfoundation -list_devices true -i "" 2>&1 | grep -E "video|camera" || true
 
 echo ""
-echo "🎬 开始录制... 按 Ctrl+C 可提前结束"
+echo "🎬 Recording... Press Ctrl+C to stop early."
 echo ""
 
-# 录制视频
-# 0:0 表示使用默认摄像头（FaceTime HD Camera）
+# Record video
+# 0:none = camera only, no audio
 ffmpeg -t "$DURATION" \
   -f avfoundation \
   -i "0:none" \
@@ -44,10 +44,10 @@ ffmpeg -t "$DURATION" \
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "✅ 陛下，视频录制完成！"
-echo "📁 文件位置：${WORKSPACE}/${OUTPUT}"
-echo "📊 文件大小：$(ls -lh "${WORKSPACE}/${OUTPUT}" | awk '{print $5}')"
+echo "✅ Recording complete!"
+echo "📁 File: ${WORKSPACE}/${OUTPUT}"
+echo "📊 Size: $(ls -lh "${WORKSPACE}/${OUTPUT}" | awk '{print $5}')"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-# 输出文件路径供调用方使用
+# Output file path for caller
 echo "FILE_PATH:${WORKSPACE}/${OUTPUT}"

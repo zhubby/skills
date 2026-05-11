@@ -1,65 +1,50 @@
-# Audio Recorder 🎤
-
-**Version:** 1.0.0  
-**Author:** 大闸蟹  
-**Description:** MacBook 麦克风录音技能，使用 ffmpeg 录制指定时长的音频
-
+---
+name: audio-recorder
+description: Record audio from the system microphone using ffmpeg. Supports custom duration, filename, and automatic dependency management.
 ---
 
-## 🎯 触发关键词
+# Audio Recorder
 
-- "录音" / "录音频" / "录声音"
-- "用麦克风录" / "录制声音"
-- "record audio" / "record voice" / "mic record"
-- "录一段" / "录个音"
-- "语音录制" / "声音录制"
+Record audio from the system microphone and save as high-quality MP3.
 
----
+## Trigger
 
-## 💻 功能
+Use when the user asks to record audio, capture voice, or start microphone recording.
 
-| 功能 | 说明 |
-|------|------|
-| 麦克风录音 | 使用 MacBook 内置麦克风 |
-| 自定义时长 | 默认 30 秒，可指定 |
-| 自定义文件名 | 支持自定义输出文件名 |
-| MP3 格式 | 192kbps 高质量 MP3 |
-| 自动发送 | 录制完成后自动发送到聊天 |
-| 权限检测 | 自动检测麦克风权限 |
-| ffmpeg 安装 | 未安装时自动提示 |
+## Capabilities
 
----
+| Feature | Description |
+|---------|-------------|
+| Microphone recording | Uses system default microphone via avfoundation |
+| Custom duration | Default 30 seconds, configurable |
+| Custom filename | Supports custom output filename |
+| MP3 output | 192kbps high-quality MP3 |
+| Auto-send | Sends recording to chat after completion |
+| Permission check | Detects microphone permission automatically |
+| Dependency check | Installs ffmpeg if missing |
 
-## 📋 使用示例
+## Usage
 
 ```
-帮我录个音
-用麦克风录 10 秒
-录一段声音发给我
-录制 60 秒音频，保存为 my_recording.mp3
+Record audio for 10 seconds
+Record a 60-second clip, save as meeting_notes.mp3
 ```
 
----
-
-## 🛠️ 依赖
+## Dependencies
 
 - ffmpeg (`brew install ffmpeg`)
-- 麦克风权限（系统设置 → 隐私与安全性 → 麦克风）
+- Microphone permission (System Settings → Privacy & Security → Microphone)
 
----
-
-## 📁 文件结构
+## File Structure
 
 ```
 audio-recorder/
-├── SKILL.md           # Skill 定义
-└── record_audio.sh    # 录音脚本
+├── SKILL.md           # Skill definition
+└── record_audio.sh    # Recording script
 ```
 
----
+## Notes
 
-## ⚠️ 注意事项
-
-1. 首次使用需要授权麦克风权限
-2. 确保环境安静，避免背景噪音
-3. 录制时长建议不超过 5 分钟（文件较大）
+1. First use requires granting microphone permission
+2. Keep environment quiet for best quality
+3. Recommended max duration: 5 minutes (file size grows quickly)
